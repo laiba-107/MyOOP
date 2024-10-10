@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag and Drop</title>
+  <style>
+    #itemList { list-style-type: none; padding: 0; }
+    .draggable { padding: 10px; margin: 5px; background: #f0f0f0; cursor: grab; }
+  </style>
+</head>
+<body>
+<h1>Drag and Drop Example</h1>
+<ul id="itemList">
+  <li class="draggable" draggable="true">Item 1</li>
+  <li class="draggable" draggable="true">Item 2</li>
+  <li class="draggable" draggable="true">Item 3</li>
+</ul>
+
+<script>
+  const items = document.querySelectorAll('.draggable');
+
+  items.forEach(item => {
+    item.addEventListener('dragstart', dragStart);
+    item.addEventListener('dragover', dragOver);
+    item.addEventListener('drop', drop);
+  });
+
+  function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.innerText);
+    e.target.classList.add('dragging');
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+    const draggingItem = document.querySelector('.dragging');
+    if (draggingItem !== e.target) {
+      e.target.classList.add('over');
+    }
+  }
+
+  function drop(e) {
+    e.preventDefault();
+    const data = e.dataTransfer.getData('text/plain');
+    const draggingItem = document.querySelector('.dragging');
+    e.target.classList.remove('over');
+
+    if (e.target.classList.contains('draggable')) {
+      const dropTarget = e.target;
+      dropTarget.insertAdjacentHTML('beforebegin', `<li class="draggable" draggable="true">${data}</li>`);
+      draggingItem.remove();
+    }
+  }
+</script>
+</body>
+</html>
+<a href="./EX4A.js">Next</a>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Scroll</title>
+  <style>
+    #content { margin-bottom: 200px; }
+    .item { padding: 20px; border: 1px solid #ccc; margin: 10px 0; }
+  </style>
+</head>
+<body>
+<h1>Infinite Scroll Example</h1>
+<div id="content"></div>
+<div id="loading" style="display: none;">Loading more items...</div>
+
+<script>
+  let page = 0;
+
+  function loadItems() {
+    for (let i = 0; i < 10; i++) {
+      const item = document.createElement('div');
+      item.className = 'item';
+      item.innerText = `Item ${page * 10 + i + 1}`;
+      document.getElementById('content').appendChild(item);
+    }
+    page++;
+    document.getElementById('loading').style.display = 'none';
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      document.getElementById('loading').style.display = 'block';
+      setTimeout(loadItems, 1000); // Simulate network delay
+    }
+  });
+
+  observer.observe(document.getElementById('loading'));
+
+  // Initial load
+  loadItems();
+</script>
+</body>
+</html>
+<a href="./EX2A.html">Next</a>

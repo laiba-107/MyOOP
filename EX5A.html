@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lazy Loading Images</title>
+  <style>
+    img { display: block; margin: 20px auto; }
+    .placeholder { height: 300px; background-color: #f0f0f0; }
+  </style>
+</head>
+<body>
+<h1>Lazy Loading Images Example</h1>
+<div class="placeholder"></div>
+<img data-src="https://via.placeholder.com/600x300" alt="Lazy Loaded Image" class="lazy" />
+<div class="placeholder"></div>
+<img data-src="https://via.placeholder.com/600x300" alt="Lazy Loaded Image" class="lazy" />
+<div class="placeholder"></div>
+<img data-src="https://via.placeholder.com/600x300" alt="Lazy Loaded Image" class="lazy" />
+
+<script>
+  const lazyImages = document.querySelectorAll('.lazy');
+
+  const lazyLoad = (image) => {
+    image.src = image.dataset.src;
+    image.classList.remove('lazy');
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        lazyLoad(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  lazyImages.forEach(image => {
+    observer.observe(image);
+  });
+</script>
+</body>
+</html>
+<a href="HomepageAd.html">Homepage</a>
