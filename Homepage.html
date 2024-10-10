@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOME PAGE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome to the Programming Exercises Hub!</h1>
+<a href="Beginner/HomepageB.html">Beginner</a>
+<a href="Intermediate/HomepageInter.html">Intermediate</a>
+<a href="Advance/HomepageAd.html">Advance</a>
+
+<script>
+  // Function to show a welcome message
+  function showWelcomeMessage() {
+    alert("Welcome to the Programming Exercises Hub! Click on a level to start learning.");
+  }
+
+  // Display welcome message when the page loads
+  window.onload = showWelcomeMessage;
+</script>
+
+</body>
+</html>
